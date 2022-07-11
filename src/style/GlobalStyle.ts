@@ -4,6 +4,7 @@ import reset from 'styled-reset'
 
 const GlobalStyle = createGlobalStyle`
     ${reset}
+    @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
     /* http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126
     License: none (public domain)
@@ -51,6 +52,10 @@ const GlobalStyle = createGlobalStyle`
     table {
         border-collapse: collapse;
         border-spacing: 0;
+    }
+    body{
+        min-height: 100vh;
+        overflow: hidden;
     }
 `
 
