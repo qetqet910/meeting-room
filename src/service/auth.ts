@@ -1,9 +1,8 @@
 // Firebase Auth / Provider
 
-import { getAuth, signInWithPopup, signOut } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import { GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider  } from "firebase/auth" 
-
-const auth = getAuth();
+import { auth } from 'firebaseConfig'
 
 export const signInGoogle = () => {
     const provider = new GoogleAuthProvider();
@@ -20,10 +19,10 @@ export const signInFacebook = () => {
     return signInWithPopup(auth, provider);
 }
 
-export const logout = () => {
-    return signOut(auth).then(() => {
-        return "성공적으로 로그아웃 되었습니다."
-    }).catch((error) => {
-        return `오류 발생: ${error}`
-    })
-}
+// export const logout = () => {
+//     return signOut(auth).then(() => {
+//         return "성공적으로 로그아웃 되었습니다."
+//     }).catch((error) => {
+//         return `오류 발생: ${error}`
+//     })
+// }
