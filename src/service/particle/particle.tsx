@@ -25,7 +25,6 @@ export const Particle50 = () => {
           type: "circle",
           stroke: {
             width: 10,
-            color: "#6A2C70"
           },
           // polygon: {
           //   "nb_sides": 15

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Particle50 } from 'service/particle/particle';
 import Logo from 'img/Login/logo_transparent.png'
@@ -6,7 +6,7 @@ import Logo from 'img/Login/logo_transparent.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'firebaseConfig'
 import { Link } from 'react-router-dom';
 
@@ -184,7 +184,6 @@ const Login = styled.form`
       font-family: 'Rajdhani', sans-serif;
       text-align: center;
       cursor: pointer;
-      text-decoration: underline;
       transition: all .5s;
       .FontAwesome{
         color: #3f3f3fba;
@@ -199,47 +198,55 @@ const Login = styled.form`
         margin-top: 16px;
         margin-left: 4px;
       }
+      &::after{
+        content: '';
+        position: absolute;
+        left: 0px;
+        bottom: -2px;
+        width: 100%;
+        height: 2px;
+        background-color: #3f3f3f9e;
+      }
+      &:hover{
+        &::after{
+          background-color: #272727e1;
+        }
+      }
     }
   }
 `
 
 const LoginSection = () => {
-  // Sign UP
-  // const [registerEmail, setRegisterEmail] = useState("");
-  // const [registerPassword, setRegisterPassword] = useState("");
-
   // Sign In
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const [User, setUser] = useState({});
+  const LoginEmail = useRef();
+  const LoginPassword = useRef();
+  const [user, setUser] = useState({});
 
-  onAuthStateChanged(auth, (currentUser:any) => {
+  let ID = ''
+  let PW = ''
+
+  onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
-  
-  // const register = async () => {
-  //     try {
-  //       const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-  //     } catch (error:any) {
-  //       alert(error.message);
-  //     }
-  // };
 
-  const login = async () => {
+  const login = async (e) => {
+    e.preventDefault();
+
+    ID = LoginEmail.current.value;
+    PW = LoginPassword.current.value;
+
     try {
-        const User = await signInWithEmailAndPassword(
-            auth,
-            loginEmail,
-            loginPassword
-        );
-    } catch (error:any) {
+      const user = await signInWithEmailAndPassword(
+          auth,
+          ID,
+          PW
+      );
+      alert('로그인 되었습니다.');
+      window.location.replace("/home");
+    } catch (error) {
         alert(error.message);
     }
   };
-  
-  // const logout = async () => {
-  //     await signOut(auth);
-  // };
 
   return (
     <>
@@ -254,16 +261,16 @@ const LoginSection = () => {
           <Login>
             <div className="inputs">
               <span>
-              <input autoComplete='off' placeholder='Please enter your ID' type="text" name='ID' />
+              <input autoComplete='off' ref={LoginEmail} placeholder='Please enter your ID' type="text" name='ID' />
                 <FontAwesomeIcon className='FontAwesome' icon={faUser} />
               </span>
               <span>
-                <input autoComplete='off' placeholder='Please enter your Password' type="password" name='password' />
+                <input autoComplete='off' ref={LoginPassword} placeholder='Please enter your Password' type="password" name='password' />
                 <FontAwesomeIcon className='FontAwesome' icon={faLock} />
               </span>
             </div>
             <div className="submits">
-              <button name='SignIn'>
+              <button name='SignIn' onClick={login}>
                 <FontAwesomeIcon className='FontAwesome' icon={faSignInAlt} />
                 <span>로그인</span>
               </button>

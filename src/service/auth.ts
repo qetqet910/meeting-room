@@ -18,11 +18,3 @@ export const signInFacebook = () => {
     const provider = new FacebookAuthProvider();
     return signInWithPopup(auth, provider);
 }
-
-// export const logout = () => {
-//     return signOut(auth).then(() => {
-//         return "성공적으로 로그아웃 되었습니다."
-//     }).catch((error) => {
-//         return `오류 발생: ${error}`
-//     })
-// }
