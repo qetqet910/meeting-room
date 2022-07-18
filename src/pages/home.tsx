@@ -1,7 +1,8 @@
-// import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Tolls3Btns from 'style/Components/Tool/Tools3Btns';
+import { RoomHeader } from 'style/Components/Link_main/RoomHeader';
 import { RoomPartition } from 'style/Components/Link_main/RoomPartition';
+import { RoomMenus } from 'style/Components/Link_main/RoomMenu';
 
 // import Logo from 'img/Login/logo_transparent.png'
 // import { auth } from 'firebaseConfig'
@@ -9,10 +10,12 @@ import { RoomPartition } from 'style/Components/Link_main/RoomPartition';
 // import { onAuthStateChanged } from 'firebase/auth';
 
 const HomeGrid = styled.section`
+    position: relative;
+    width: 100vw;
+    height: 100vh;
     display: grid;
-    grid-template-columns: 20% 80%;
-    grid-template-rows: 10% 90%;
-    padding: 20px;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 6% 94%;
 `
 
 function HomeSection(){
@@ -20,9 +23,8 @@ function HomeSection(){
     return(
         <HomeGrid>
             <Tolls3Btns /> 
-            <div></div>
-            <div></div>
-            <div></div>
+            <RoomMenus></RoomMenus>
+            <RoomHeader></RoomHeader>
             <RoomPartition></RoomPartition>
         </HomeGrid>       
     )

@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from 'firebase/auth';
+import { getDatabase } from "firebase/database";
 // var firebaseui = require('firebaseui');
 // import fireDataBase from 'firebase/database';
 
@@ -17,16 +18,12 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
   appId: process.env.REACT_APP_FIREBASE_APPID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
+  databaseURL: "https://meeting-room-69542-default-rtdb.firebaseio.com/",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 export const auth = getAuth(app);
-
-// export var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-// Login Provider
-// export const googleProvider = new LoginProvider.GoogleAuthProvider();
-// export const githubProvider = new LoginProvider.GithubAuthProvider();
+export const database = getDatabase(app);

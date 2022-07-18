@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
+
 import { Particle50 } from 'service/particle/particle';
 import Logo from 'img/Login/logo_transparent.png'
 
@@ -9,10 +10,6 @@ import { faUser, faLock, faSignInAlt, faUserPlus } from '@fortawesome/free-solid
 import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'firebaseConfig'
 import { Link } from 'react-router-dom';
-
-// ui
-import * as firebaseui from 'firebaseui'
-import 'firebaseui/dist/firebaseui.css'
 
 // Styled-Components
 
@@ -32,9 +29,9 @@ const Left = styled.div`
     .Logo{
       position: fixed;
       left: 25%;
-      top: 30%;
-      width: 25%;
-      height: 55%;
+      top: 42%;
+      width: 22%;
+      height: 18%;
       transform: translate(-50%, -30%);
       z-index: 999;
     }
@@ -43,8 +40,8 @@ const Left = styled.div`
       font-size: .8vw;
       text-align: center;
       color: #cccccc;
-      left: 25%;
-      top: 70%;
+      left: 25.7%;
+      top: 58%;
       transform: translate(-50%, -50%);
     }
   }

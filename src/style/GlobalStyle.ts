@@ -55,6 +55,27 @@ const GlobalStyle = createGlobalStyle`
     }
     body{
         min-height: 100vh;
+        overflow: hidden;
+    }
+
+
+    html{
+        font-size: 62.5%;
+    }
+    @media screen and (max-width: 1745px) {
+        html{font-size: 52.5%}
+    }
+    @media screen and (max-width: 1570px) {
+        html{font-size: 42.5%}
+    }
+    @media screen and (max-width: 1395px){
+        html{font-size: 32.5%}
+    }
+    @media screen and (max-width: 1220px){
+        html{font-size: 22.5%}
+    }
+    @media screen and (max-width: 1045px){
+        html{font-size: 12.5%}
     }
 `
 

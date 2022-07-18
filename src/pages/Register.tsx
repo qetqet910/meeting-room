@@ -4,8 +4,9 @@ import { Particle100 } from 'service/particle/particle';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'firebaseConfig';
 
-import * as firebaseui from 'firebaseui'
-import 'firebaseui/dist/firebaseui.css'
+// import firebase from 'firebase/compat/app';
+// import * as firebaseui from 'firebaseui'
+// import 'firebaseui/dist/firebaseui.css'
 
 import Logo from 'img/Login/logo_transparent.png'
 
@@ -31,31 +32,18 @@ const RegisterForm = styled.form`
     font-family: 'Do Hyeon', sans-serif;
     letter-spacing: -2px;
     word-spacing: 2px;
-    h1{
-        font-size: calc(1vw + 18px);
-        font-weight: bold;
-        color: #333333e1;
-        img{
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            width: 100%;
-            z-index: -1;
-            opacity: .2;
-        }
-    }
     h3{
-        font-size: calc(.8vw);
-        font-weight: 500;
+        font-size: 1.6rem;
+        font-weight: bold;
         color: #333333e1;
         margin: 10px 0px 30px 0px;
     }
     input{
         all: unset;
-        width: 20vw;
+        min-width: 400px;
         min-height: 20px;
-        font-size: calc(.8vw + 5px); 
-        box-shadow: 1px 1px 3px #4885fe;
+        font-size: 2rem; 
+        box-shadow: 1px 1px 3px #4885fe7b;
         margin: 10px 0px;
         font-weight: bold;
         color: #555;
@@ -92,11 +80,17 @@ const PasswordPower = styled.ul`
     li{
         display: block;
         padding: 20px 0px 0px 6px;
+        font-size: 1.6rem;
+        color: #333333e1;
+        font-weight: bold;
     }
 `
 
 
 function Register() {
+    // 백그라운드 마와레 현상은
+    // 아마 useRef를 사용하면 해결이 가능할 것 같다.
+
     // 비밀번호 파워, 비밀번호 재확인
     const [ realPassword, realPasswordSet ] = useState('');
     const [ PassAt, PassAtSet ] = useState('');
@@ -109,7 +103,7 @@ function Register() {
 
     // 비밀번호 관련 함수들
     function validatePassword(event:any){
-        if(realPassword === event.target.value){
+        if(realPassword === event.target.value && event.target.value != ''){
             PassWordSet(cur => cur = '일치')
             setRegisterPassword(cur => cur = event.target.value)
             CheckingSet(cur => cur = '')
@@ -166,30 +160,19 @@ function Register() {
         }
     };
 
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-    ui.start('#firebaseui-auth-container', {
-        signInFlow: 'popup',
-        signInSuccessUrl: 'http://ntct24p006.cafe24.com/corner_v1/service/',
-        signInOptions: [
-            firebase.auth.EmailAuthProvider.PROVIDER_ID
-        ]
-    });
-
     return (
         <Pages>
             <Particle100/>
             <RegisterForm> 
-                <div id='firebaseui-auth-container'><div>
-                <h1>회원가입<img src={Logo} alt="LogoTransparent" /></h1>
+                <h1><img src={Logo} alt="LogoTransparent" /></h1>
                 <h3>하나의 아이디로 MRRS의 다양한 서비스를 이용해 보세요.</h3>
-                <input type="text" required autoComplete='off' placeholder='사용자 이름' name='username'/>
+                <input type="text" required autoComplete= 'off' placeholder='사용자 이름' name='username'/>
                 <input type="email" required autoComplete='off' placeholder='사용자 이메일 주소' name='email' onChange={(e => {setRegisterEmail(cur => cur = e.target.value)})}/>
-                <PasswordPower id='f1'>
+                <PasswordPower>
                     <li>{PassAt === '' ? '비밀번호 보안 강도' : PassAt}</li>
                 </PasswordPower>
                 <input type="password" required onChange={PasswordStrength} autoComplete='off' placeholder='사용자 비밀번호' name='password' minLength={8} id='password'/>
-                <PasswordPower id='f1'>
+                <PasswordPower>
                     <li>{PassWord === '' ? '비밀번호 재확인' : PassWord}</li>
                 </PasswordPower>
                 <input type="password" required onChange={validatePassword} autoComplete='off' placeholder='사용자 비밀번호 확인' name='password_confirm' minLength={8} id='password_confirm'/>
@@ -200,3 +183,24 @@ function Register() {
 }
 
 export default Register;
+
+// var ui = new firebaseui.auth.AuthUI(firebase.auth());
+// var uiConfig = {
+//     // signInFlow: 'popup',
+//     signInSuccessUrl: 'http://localhost:3000/home',
+//     signInoptions: [
+//         firebase.auth.EmailAuthProvider.PROVIDER_ID,
+//         {
+//             provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+//             authMethod: "https://accounts.google.com",
+//             clientId: "411613138185-s284u7caootjjbnr7723bfjv93l4d3u3.apps.googleusercontent.com"
+//         },
+//     ],
+//     tosUrl: 'http://localhost:3000/',
+
+//     privacyPolicyUrl: function() {
+//       window.location.assign('<your-privacy-policy-url>');
+//     }
+//   };
+
+// ui.start('#firebaseui-auth-container', uiConfig);
