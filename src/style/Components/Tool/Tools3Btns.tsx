@@ -8,7 +8,7 @@ const BtnsBox = styled.div`
     justify-content: center;
     align-items: center;
     right: 2%;
-    top: 4%;
+    bottom: 4%;
     z-index: 999;
     border-radius: 50px;
     padding: 3px 2px;

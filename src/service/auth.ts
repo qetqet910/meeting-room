@@ -1,7 +1,8 @@
 // Firebase Auth / Provider
 
-import { signInWithPopup } from "firebase/auth";
-import { GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider  } from "firebase/auth" 
+import { signInWithPopup, OAuthProvider } from "firebase/auth";
+
+import { GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider } from "firebase/auth" 
 import { auth } from 'firebaseConfig'
 
 export const signInGoogle = () => {
@@ -16,5 +17,10 @@ export const signInGithub = () => {
 
 export const signInFacebook = () => {
     const provider = new FacebookAuthProvider();
+    return signInWithPopup(auth, provider);
+}
+
+export const signInMicrosoft = () => {
+    const provider = new OAuthProvider('microsoft.com');
     return signInWithPopup(auth, provider);
 }

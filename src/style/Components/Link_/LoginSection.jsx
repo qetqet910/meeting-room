@@ -10,21 +10,9 @@ import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'firebaseConfig'
 import { Link } from 'react-router-dom';
 
-// import LowPoly from "img/Login/Hexagon.png";
-// import Logo from "img/Login/logo_transparent.png";
-// Logins
-
-// const EmailAccount = (e) => {
-//   e.preventDefault();
-
-//   if(e.target.innerText == "Sign In"){
-//     return signInEmailAccount(Email.value, Password.value)
-//   }else if(e.target.innerText == "Sign Up"){
-    
-//   }else{
-    
-//   }
-// }
+// ui
+import * as firebaseui from 'firebaseui'
+import 'firebaseui/dist/firebaseui.css'
 
 // Styled-Components
 
@@ -56,7 +44,7 @@ const Left = styled.div`
       text-align: center;
       color: #cccccc;
       left: 25%;
-      top: 62%;
+      top: 70%;
       transform: translate(-50%, -50%);
     }
   }

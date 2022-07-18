@@ -55,7 +55,6 @@ const GlobalStyle = createGlobalStyle`
     }
     body{
         min-height: 100vh;
-        overflow: hidden;
     }
 `
 

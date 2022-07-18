@@ -4,6 +4,11 @@ import { Particle100 } from 'service/particle/particle';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'firebaseConfig';
 
+import * as firebaseui from 'firebaseui'
+import 'firebaseui/dist/firebaseui.css'
+
+import Logo from 'img/Login/logo_transparent.png'
+
 const Pages = styled.div`
     position: relative;
     display: block;
@@ -20,7 +25,7 @@ const RegisterForm = styled.form`
     top: 50%;
     background: #fff;
     border-radius: 5px;
-    padding: 20px 10px;
+    padding: 20px 10px 20px 10px;
     box-shadow: 2px 2px 3px #eeeeee;
     transform: translate(-50%, -50%);
     font-family: 'Do Hyeon', sans-serif;
@@ -28,14 +33,22 @@ const RegisterForm = styled.form`
     word-spacing: 2px;
     h1{
         font-size: calc(1vw + 18px);
-        font-weight: 530;
+        font-weight: bold;
         color: #333333e1;
+        img{
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            z-index: -1;
+            opacity: .2;
+        }
     }
     h3{
         font-size: calc(.8vw);
         font-weight: 500;
         color: #333333e1;
-        margin: 20px 0px;
+        margin: 10px 0px 30px 0px;
     }
     input{
         all: unset;
@@ -79,7 +92,6 @@ const PasswordPower = styled.ul`
     li{
         display: block;
         padding: 20px 0px 0px 6px;
-        
     }
 `
 
@@ -112,6 +124,7 @@ function Register() {
         var mediumRegex = new RegExp("^(?=.{8,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
         var enoughRegex = new RegExp("(?=.{8,}).*", "g");
         var pwd = event.target;
+        
         
         realPasswordSet(cur => cur = pwd.value);
 
@@ -153,11 +166,22 @@ function Register() {
         }
     };
 
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+    ui.start('#firebaseui-auth-container', {
+        signInFlow: 'popup',
+        signInSuccessUrl: 'http://ntct24p006.cafe24.com/corner_v1/service/',
+        signInOptions: [
+            firebase.auth.EmailAuthProvider.PROVIDER_ID
+        ]
+    });
+
     return (
         <Pages>
             <Particle100/>
             <RegisterForm> 
-                <h1>MRRS 회원가입</h1>
+                <div id='firebaseui-auth-container'><div>
+                <h1>회원가입<img src={Logo} alt="LogoTransparent" /></h1>
                 <h3>하나의 아이디로 MRRS의 다양한 서비스를 이용해 보세요.</h3>
                 <input type="text" required autoComplete='off' placeholder='사용자 이름' name='username'/>
                 <input type="email" required autoComplete='off' placeholder='사용자 이메일 주소' name='email' onChange={(e => {setRegisterEmail(cur => cur = e.target.value)})}/>
