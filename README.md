@@ -93,3 +93,7 @@ node_module / bower 제외
             \---Tool
                     Tools3Btns.tsx
 ```
+
+## 아 그리고 페이지 구성은
+![화면 캡처 2022-07-19 163115](https://user-images.githubusercontent.com/79036088/179692791-4b554166-d47d-48f8-a6e7-fb71747173cd.png)
+
