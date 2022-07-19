@@ -13,13 +13,12 @@ import Room10 from 'img/Main/Rooms/room10.jpg';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
-import { useEffect } from 'react';
 
 const RoomUnit = styled.div`
     position: relative;
     display: grid;
     height: 100%;
-    padding: 30px 0px 0px 30px;
+    padding: 3rem 0px 0rem 3rem;
     grid-template-columns: repeat(4, 370px);
     grid-template-rows: repeat(3, 370px);
     gap: 30px 20px;
@@ -50,18 +49,18 @@ const RoomUnit = styled.div`
     }
 
     // Media
-    // @Step: 175px @Value: 45px
+    // @Step: 160px @Value: 45px
     // @Param: Cards
 
-    @media screen and (max-width: 1745px) {
-        grid-template-columns: repeat(4, 335px);
-        grid-template-rows: repeat(3, 335px);
+    @media screen and (max-width: 1760px) {
+        grid-template-columns: repeat(4, 325px);
+        grid-template-rows: repeat(3, 325px);
         a{
-            width: 335px;
-            min-height: 335px;
+            width: 325px;
+            min-height: 325px;
         }
     }
-    @media screen and (max-width: 1570px) {
+    @media screen and (max-width: 1600px) {
         grid-template-columns: repeat(4, 290px);
         grid-template-rows: repeat(3, 290px);   
         a{
@@ -69,33 +68,96 @@ const RoomUnit = styled.div`
             min-height: 290px;  
         }
     }
-    @media screen and (max-width: 1395px){
-        grid-template-columns: repeat(4, 245px);
-        grid-template-rows: repeat(3, 245px);   
+    @media screen and (max-width: 1440px){
+        grid-template-columns: repeat(4, 260px);
+        grid-template-rows: repeat(3, 260px);   
         a{
-            width: 245px;
-            min-height: 245px;  
+            width: 260px;
+            min-height: 260px;  
         }
     }
-    @media screen and (max-width: 1220px){
+    @media screen and (max-width: 1280px){
         // -- 10
-        grid-template-columns: repeat(4, 210px);
-        grid-template-rows: repeat(3, 210px);   
+        grid-template-columns: repeat(3, 310px);
+        grid-template-rows: repeat(3, 310px);   
+        a{
+            width: 310px;
+            min-height: 310px;  
+        }
+    }
+    @media screen and (max-width: 1120px){
+        // -- 5
+        grid-template-columns: repeat(3, 240px);
+        grid-template-rows: repeat(3, 240px);   
+        a{
+            width: 240px;
+            min-height: 240px;  
+        }
+    }
+    @media screen and (max-width: 960px){
+        grid-template-columns: repeat(2, 330px);
+        grid-template-rows: repeat(2, 330px);   
+        a{
+            width: 330px;
+            min-height: 330px;  
+        }
+    }
+    @media screen and (max-width: 800px){
+        grid-template-columns: repeat(2, 290px);
+        grid-template-rows: repeat(2, 290px);   
+        a{
+            width: 290px;
+            min-height: 290px;  
+        }
+    }
+    @media screen and (max-width: 750px){
+        grid-template-columns: repeat(2, 270px);
+        grid-template-rows: repeat(2, 270px);   
+        a{
+            width: 270px;
+            min-height: 270px;  
+        }
+    }
+    @media screen and (max-width: 700px){
+        grid-template-columns: repeat(2, 240px);
+        grid-template-rows: repeat(2, 240px);   
+        a{
+            width: 240px;
+            min-height: 240px;  
+        }
+    }
+    @media screen and (max-width: 620px){
+        grid-template-columns: repeat(2, 210px);
+        grid-template-rows: repeat(2, 210px);   
         a{
             width: 210px;
             min-height: 210px;  
         }
     }
-    @media screen and (max-width: 1045px){
-        // -- 5
-        grid-template-columns: repeat(4, 190px);
-        grid-template-rows: repeat(3, 190px);   
+    @media screen and (max-width: 520px){
+        grid-template-columns: repeat(1, 380px);
+        grid-template-rows: repeat(1, 380px);   
         a{
-            width: 190px;
-            min-height: 190px;  
+            width: 380px;
+            min-height: 380px;  
         }
     }
-
+    @media screen and (max-width: 380px){
+        grid-template-columns: repeat(1, 310px);
+        grid-template-rows: repeat(3, 310px);   
+        a{
+            width: 310px;
+            min-height: 310px;  
+        }
+    }
+    @media screen and (max-width: 280px){
+        grid-template-columns: repeat(1, 240px);
+        grid-template-rows: repeat(3, 240px);   
+        a{
+            width: 240px;
+            min-height: 240px;  
+        }
+    }
 `
 const Cards = styled.a`
     position: relative;
@@ -127,8 +189,7 @@ const Cards = styled.a`
     }
     .bottom{
         display: grid;
-        width: calc(100% - 20px);
-        height: calc(90px - 20px);
+        height: 0rem;
         padding: 10px;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
@@ -137,7 +198,7 @@ const Cards = styled.a`
             align-items: center;
             .RoomTitle{
                 color: #333;
-                font-size: 2.4rem;
+                font-size: 2.2rem;
                 font-weight: bold;
                 font-family: 'Do Hyeon', sans-serif;
                 letter-spacing: -2px;
@@ -169,30 +230,13 @@ const Cards = styled.a`
             font-size: 1.55rem;
             line-height: 1.8rem;
             font-family: 'Do Hyeon', sans-serif;
-            margin-top: 16px;
+            margin-top: 1.6rem;
             font-weight: 600;
         }
     }
 `   
 
 export function RoomPartition(){
-
-    useEffect(() => {
-
-    }, [])
-
-    function textLengthOverCut(txt:any, len?:any, lastTxt?:any) {
-        if (len === "" || len === null) { // 기본값
-            len = 20;
-        }
-        if (lastTxt === "" || lastTxt === null) { // 기본값
-            lastTxt = "...";
-        }
-        if (txt.target.innerText.length > len) {
-            txt.target.inenrText = txt.target.innerText.substr(0, len) + lastTxt;
-        }
-    }
-
     return(
         <RoomUnit>
             <Cards href="/home">

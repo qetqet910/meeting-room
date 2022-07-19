@@ -11,6 +11,27 @@ import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'firebaseConfig'
 import { Link } from 'react-router-dom';
 
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+// import { FirebaseAuth } from 'react-firebaseui';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+// import * as firebaseui from 'firebaseui'
+// import 'firebaseui/dist/firebaseui.css'
+
+const configSec = {
+  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTODOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_FIREBASE_APPID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
+  databaseURL: "https://meeting-room-69542-default-rtdb.firebaseio.com/",
+}
+
+firebase.initializeApp(configSec);
+
 // Styled-Components
 
 const Left = styled.div`
@@ -37,7 +58,7 @@ const Left = styled.div`
     }
     p{
       position: fixed;
-      font-size: .8vw;
+      font-size: 1.6rem;
       text-align: center;
       color: #cccccc;
       left: 25.7%;
@@ -83,7 +104,7 @@ const Login = styled.form`
         top: 50%;
         transform: translateY(-28%);
         color: #4885fe;
-        font-size: 1.2vw;
+        font-size: 2rem;
         transition: all .5s;
       }
       input{
@@ -91,7 +112,7 @@ const Login = styled.form`
         width: calc(100% - 62px); height: 100%;
         padding: 4px;
         border-bottom: 1px solid #4885fe;
-        font-size: 1vw;
+        font-size: 2rem;
         font-weight: bold;
         font-family: 'Rajdhani', sans-serif;
         padding-left: 62px;
@@ -116,12 +137,15 @@ const Login = styled.form`
     span{
       display: block;
       color: #3f3f3f87;
-      font-size: .8vw;
+      font-size: 1.6rem;
       font-weight: bold;
       letter-spacing: -2px;
       word-spacing: 2px;
       font-family: 'Rajdhani', sans-serif;
-      margin-top: 40px;
+      margin-top: 3rem;
+    }
+    #tiny{
+      font-size: 1.8rem
     }
     button{
       all: unset;
@@ -129,7 +153,6 @@ const Login = styled.form`
       width: 100%;
       height: 80%;
       padding: 16px 0px;
-      font-size: 1vw;
       font-weight: bold;
       font-family: 'Rajdhani', sans-serif;
       text-align: center;
@@ -141,12 +164,12 @@ const Login = styled.form`
       transition: all .5s;
       .FontAwesome{
         color: #ffffff;
-        font-size: 1.4vw;
+        font-size: 2.4rem;
         transition: all .5s;
       }
       span{
         display: inline-flex;
-        font-size: 1.4vw;
+        font-size: 2.2rem;
         font-weight: bold;
         font-family: 'Rajdhani', sans-serif;
         margin-left: 18px;
@@ -164,7 +187,6 @@ const Login = styled.form`
       position: relative;
       height: 50%;
       padding: 4px;
-      font-size: 1vw;
       font-weight: bold;
       font-family: 'Rajdhani', sans-serif;
       text-align: center;
@@ -172,16 +194,16 @@ const Login = styled.form`
       transition: all .5s;
       .FontAwesome{
         color: #3f3f3fba;
-        font-size: 1vw;
+        font-size: 1.8rem;
         transition: all .5s;
       }
       span{
         display: inline-flex;
         color: #3f3f3fba;
-        font-size: 1vw;
+        font-size: 1.8rem;
         transition: all .5s;
         margin-top: 16px;
-        margin-left: 4px;
+        margin-left: .6rem;
       }
       &::after{
         content: '';
@@ -206,7 +228,7 @@ const LoginSection = () => {
   const LoginEmail = useRef();
   const LoginPassword = useRef();
   const [user, setUser] = useState({});
-
+  
   let ID = ''
   let PW = ''
 
@@ -228,10 +250,33 @@ const LoginSection = () => {
       );
       alert('로그인 되었습니다.');
       window.location.replace("/home");
+
+      return user;
     } catch (error) {
         alert(error.message);
     }
   };
+
+  console.log(user);
+
+
+  
+  var uiConfig = {
+    signInSuccessUrl: 'http://localhost:3000/home',
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+      firebase.auth.GithubAuthProvider.PROVIDER_ID,
+    ],
+    // tosUrl: '<your-tos-url>',
+    // privacyPolicyUrl: function() {
+      // window.location.assign('<your-privacy-policy-url>');
+    // }
+  };
+  // var ui = new firebaseui.auth.AuthUI(firebase.auth());
+  // const ui = new firebaseui.auth.AuthUI(firebase.auth());
+  // ui.start('#firebaseui-auth-container', uiConfig);
 
   return (
     <>
@@ -259,7 +304,11 @@ const LoginSection = () => {
                 <FontAwesomeIcon className='FontAwesome' icon={faSignInAlt} />
                 <span>로그인</span>
               </button>
-              <span>
+              <span className='tiny' id='tiny'>
+                다른 계정으로 로그인
+              </span>
+              <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+              <span className='tiny'>
                 계정이 없으신가요?
               </span>
               <Link to={"/register"}>

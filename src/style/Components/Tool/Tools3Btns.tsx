@@ -34,7 +34,7 @@ const BtnsBox = styled.div`
         color: white;
         min-width: 20px;
         min-height: 20px;
-        font-size: 1vw;
+        font-size: 2.2rem;
         cursor: pointer;
         z-index: 999;
         transition: all .5s;
@@ -55,7 +55,7 @@ const Toolbtn = styled.a`
     color: white;
     min-width: 20px;
     min-height: 20px;
-    font-size: 1vw;
+    font-size: 2.2rem;
     transition: all .5s;
     box-shadow: 0px 0px 5px #fff;
     cursor: pointer;

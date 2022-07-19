@@ -33,10 +33,12 @@ const RegisterForm = styled.form`
     letter-spacing: -2px;
     word-spacing: 2px;
     h3{
-        font-size: 1.6rem;
+        font-size: 1.7rem;
         font-weight: bold;
         color: #333333e1;
-        margin: 10px 0px 30px 0px;
+        margin: 16px 0px 18px 0px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid #666;
     }
     input{
         all: unset;
@@ -59,7 +61,7 @@ const RegisterForm = styled.form`
       height: 80%;
       color: #fff;
       padding: 16px 0px;
-      font-size: 1vw;
+      font-size: 2rem;
       font-weight: bold;
       font-family: 'Rajdhani', sans-serif;
       text-align: center;
@@ -80,7 +82,7 @@ const PasswordPower = styled.ul`
     li{
         display: block;
         padding: 20px 0px 0px 6px;
-        font-size: 1.6rem;
+        font-size: 1.7rem;
         color: #333333e1;
         font-weight: bold;
     }
@@ -103,7 +105,7 @@ function Register() {
 
     // 비밀번호 관련 함수들
     function validatePassword(event:any){
-        if(realPassword === event.target.value && event.target.value != ''){
+        if(realPassword === event.target.value && event.target.value !== ''){
             PassWordSet(cur => cur = '일치')
             setRegisterPassword(cur => cur = event.target.value)
             CheckingSet(cur => cur = '')
@@ -154,6 +156,8 @@ function Register() {
                 );
                 alert('가입되었습니다.');
                 window.location.replace("/");
+
+                return user;
             } catch (error:any) {
                 alert(error.message);
             }
@@ -183,24 +187,3 @@ function Register() {
 }
 
 export default Register;
-
-// var ui = new firebaseui.auth.AuthUI(firebase.auth());
-// var uiConfig = {
-//     // signInFlow: 'popup',
-//     signInSuccessUrl: 'http://localhost:3000/home',
-//     signInoptions: [
-//         firebase.auth.EmailAuthProvider.PROVIDER_ID,
-//         {
-//             provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-//             authMethod: "https://accounts.google.com",
-//             clientId: "411613138185-s284u7caootjjbnr7723bfjv93l4d3u3.apps.googleusercontent.com"
-//         },
-//     ],
-//     tosUrl: 'http://localhost:3000/',
-
-//     privacyPolicyUrl: function() {
-//       window.location.assign('<your-privacy-policy-url>');
-//     }
-//   };
-
-// ui.start('#firebaseui-auth-container', uiConfig);

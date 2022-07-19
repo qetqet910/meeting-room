@@ -8,7 +8,7 @@ import { RoomMenus } from 'style/Components/Link_main/RoomMenu';
 // import { auth } from 'firebaseConfig'
 // import { Link } from 'react-router-dom';
 // import { onAuthStateChanged } from 'firebase/auth';
-
+    
 const HomeGrid = styled.section`
     position: relative;
     width: 100vw;
@@ -16,6 +16,13 @@ const HomeGrid = styled.section`
     display: grid;
     grid-template-columns: 15% 85%;
     grid-template-rows: 6% 94%;
+    @media screen and (max-width: 560px){
+        grid-template-columns: 100%;
+        grid-template-rows: 8% 92%;
+        .Menu{
+            display: none;
+        }
+    }
 `
 
 function HomeSection(){

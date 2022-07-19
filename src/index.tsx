@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import App from './App';
 
 import reportWebVitals from './reportWebVitals';
@@ -7,14 +6,10 @@ import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from './style/theme-components';
 import GlobalStyle from './style/GlobalStyle';
 import theme from './style/theme';
-// FireBase
-// import { analytics as db } from './firebase';
-// import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle/>
       <BrowserRouter>
@@ -22,7 +17,8 @@ root.render(
           <App />
         </ThemeProvider>
       </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

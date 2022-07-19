@@ -1,7 +1,6 @@
 // Firebase Auth / Provider
 
 import { signInWithPopup, OAuthProvider } from "firebase/auth";
-
 import { GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider } from "firebase/auth" 
 import { auth } from 'firebaseConfig'
 
