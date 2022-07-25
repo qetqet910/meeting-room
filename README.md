@@ -1,13 +1,12 @@
 # 대충만듦
 
-로그인
-![화면 캡처 2022-07-18 164323](https://user-images.githubusercontent.com/79036088/179465988-89726042-70a3-4610-9f9c-884d11f477ca.png)
-회원가입
-![q2](https://user-images.githubusercontent.com/79036088/179684535-a4e7b790-6870-4270-9b51-75ae62e924ef.png)
-홈
-![q3](https://user-images.githubusercontent.com/79036088/179684545-85eb6816-5442-489d-841a-37ed675fbed1.png)
-홈 (갤럭시 S8+)
-![q4](https://user-images.githubusercontent.com/79036088/179684548-a2ee8877-d649-421e-8d34-ddfdbb1bb83f.png)
+<div align=center>
+
+<a href="https://github.com/soyeon-noh/Art_Recycle.git">
+    <img src="https://widget.realdeveloper.pro/api/card?user=qetqet910&repo=meeting-room" />
+</a>
+
+</div>
 
 ```shell
 2022 / 7 / 19 PM 3:44 기준
