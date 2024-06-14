@@ -1,13 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Particle100 } from 'service/particle/particle';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from 'firebaseConfig';
-
-// import firebase from 'firebase/compat/app';
-// import * as firebaseui from 'firebaseui'
-// import 'firebaseui/dist/firebaseui.css'
-
 import Logo from 'img/Login/logo_transparent.png'
 
 const Pages = styled.div`
@@ -87,13 +80,7 @@ const PasswordPower = styled.ul`
         font-weight: bold;
     }
 `
-
-
 function Register() {
-    // 백그라운드 마와레 현상은
-    // 아마 useRef를 사용하면 해결이 가능할 것 같다.
-
-    // 비밀번호 파워, 비밀번호 재확인
     const [ realPassword, realPasswordSet ] = useState('');
     const [ PassAt, PassAtSet ] = useState('');
     const [ PassWord, PassWordSet ] = useState('');
@@ -146,22 +133,7 @@ function Register() {
         event.preventDefault();
         if(Checking === '1'){
             alert("비밀번호가 조건에 맞지 않습니다 (8자 이상, 불일치)");
-        }else{
-            console.log(auth, registerEmail, registerPassword)
-            try {
-                const user = await createUserWithEmailAndPassword(
-                    auth,
-                    registerEmail,
-                    registerPassword
-                );
-                alert('가입되었습니다.');
-                window.location.replace("/");
-
-                return user;
-            } catch (error:any) {
-                alert(error.message);
-            }
-        }
+        }else{}
     };
 
     return (

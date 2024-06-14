@@ -7,32 +7,7 @@ import Logo from 'img/Login/logo_transparent.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
-import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from 'firebaseConfig'
 import { Link } from 'react-router-dom';
-
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-// import { FirebaseAuth } from 'react-firebaseui';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-// import * as firebaseui from 'firebaseui'
-// import 'firebaseui/dist/firebaseui.css'
-
-const configSec = {
-  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTODOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
-  appId: process.env.REACT_APP_FIREBASE_APPID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
-  databaseURL: "https://meeting-room-69542-default-rtdb.firebaseio.com/",
-}
-
-firebase.initializeApp(configSec);
-
-// Styled-Components
 
 const Left = styled.div`
   position: absolute;
@@ -229,55 +204,6 @@ const LoginSection = () => {
   const LoginPassword = useRef();
   const [user, setUser] = useState({});
   
-  let ID = ''
-  let PW = ''
-
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
-
-  const login = async (e) => {
-    e.preventDefault();
-
-    ID = LoginEmail.current.value;
-    PW = LoginPassword.current.value;
-
-    try {
-      const user = await signInWithEmailAndPassword(
-          auth,
-          ID,
-          PW
-      );
-      alert('로그인 되었습니다.');
-      window.location.replace("/home");
-
-      return user;
-    } catch (error) {
-        alert(error.message);
-    }
-  };
-
-  console.log(user);
-
-
-  
-  var uiConfig = {
-    signInSuccessUrl: 'http://localhost:3000/home',
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID,
-    ],
-    // tosUrl: '<your-tos-url>',
-    // privacyPolicyUrl: function() {
-      // window.location.assign('<your-privacy-policy-url>');
-    // }
-  };
-  // var ui = new firebaseui.auth.AuthUI(firebase.auth());
-  // const ui = new firebaseui.auth.AuthUI(firebase.auth());
-  // ui.start('#firebaseui-auth-container', uiConfig);
-
   return (
     <>
         <Left>
@@ -291,23 +217,22 @@ const LoginSection = () => {
           <Login>
             <div className="inputs">
               <span>
-              <input autoComplete='off' ref={LoginEmail} placeholder='Please enter your ID' type="text" name='ID' />
+              <input autoComplete='off' placeholder='Please enter your ID' type="text" name='ID' />
                 <FontAwesomeIcon className='FontAwesome' icon={faUser} />
               </span>
               <span>
-                <input autoComplete='off' ref={LoginPassword} placeholder='Please enter your Password' type="password" name='password' />
+                <input autoComplete='off' placeholder='Please enter your Password' type="password" name='password' />
                 <FontAwesomeIcon className='FontAwesome' icon={faLock} />
               </span>
             </div>
             <div className="submits">
-              <button name='SignIn' onClick={login}>
+              <button name='SignIn'>
                 <FontAwesomeIcon className='FontAwesome' icon={faSignInAlt} />
                 <span>로그인</span>
               </button>
               <span className='tiny' id='tiny'>
                 다른 계정으로 로그인
               </span>
-              <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
               <span className='tiny'>
                 계정이 없으신가요?
               </span>
