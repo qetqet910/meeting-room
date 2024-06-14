@@ -10,153 +10,73 @@ export const Particle50 = () => {
     <Particles
       id="tsparticles"
       init={particlesInit}
-      width="50%"
       options={{
         fpsLimit: 60,
-        style: {
-          width: '50%',
-        },
         background: {
-          color: {
-            value: "#14274E",
-          },
+          color: '#14274E',
         },
-        shape: {
-          type: "circle",
-          stroke: {
-            width: 10,
-          },
-          // polygon: {
-          //   "nb_sides": 15
-          // }
+        style: {
+          width: '50%'
         },
-        particles: {
-          links: {
-            enable: true,
-            distance: 120
-          },
-          move: {
-            enable: true,
-            speed: 2.2,
-            outModes: {
-              default: "out"
+        "particles": {
+          "number": {
+            "value": 22,
+            "density": {
+              "enable": true,
+              "value_area": 200
             }
           },
-          size: {
-            value: 2
+          "shape": {
+            "type": "edge",
+            "stroke": {
+              "width": 1,
+              "color": "#fff"
+            },
+            "polygon": {
+              "nb_sides": 10
+            },
+          },
+          "color": {
+            "value": "random"
+          },
+          "opacity": {
+            "value": 1,
+            "random": false,
+            "anim": {
+              "enable": false,
+              "speed": 1,
+              "opacity_min": 0.1,
+              "sync": false
+            }
+          },
+          "size": {
+            "value": 2,
+            "random": true,
+            "anim": {
+              "enable": false,
+              "speed": 2000,
+              "size_min": 0.1,
+              "sync": false
+            }
+          },
+          "line_linked": {
+            "enable": true,
+            "distance": 200,
+            "color": "random",
+            "opacity": 0.6,
+            "width": 1
+          },
+          "move": {
+            "enable": true,
+            "speed": 3,
+            "direction": "none",
+            "random": false,
+            "straight": true,
+            "out_mode": "out",
+            "bounce": true,
           }
         },
-        collisions: {
-          enable: true,
-        },
-        responsive: [
-          {
-            maxWidth: 800,
-            options: {
-              maxParticles: 100,
-              particles: {
-                links: {
-                  enable: true,
-                  distance: 130
-                },
-                move: {
-                  enable: true,
-                  speed: 2.2,
-                  outModes: {
-                    default: "out"
-                  }
-                },
-                size: {
-                  value: 2
-                }
-              },
-            }
-          }, {
-            maxWidth: 600,
-            options: {
-              maxParticles: 50,
-              particles: {
-                links: {
-                  enable: true,
-                  distance: 64
-                },
-                move: {
-                  enable: true,
-                  speed: 1.7,
-                  outModes: {
-                    default: "out"
-                  }
-                },
-                size: {
-                  value: 1.6
-                }
-              },
-            }
-          }, {
-            maxWidth: 400,
-            options: {
-              maxParticles: 10,
-              particles: {
-                links: {
-                  enable: true,
-                  distance: 54
-                },
-                move: {
-                  enable: true,
-                  speed: 1.6,
-                  outModes: {
-                    default: "out"
-                  }
-                },
-                size: {
-                  value: 1.2  
-                }
-              },
-            }
-          }, {
-            maxWidth: 300,
-            options: {
-              maxParticles: 0,
-              particles: {
-                links: {
-                  enable: true,
-                  distance: 36
-                },
-                move: {
-                  enable: true,
-                  speed: 1.2,
-                  outModes: {
-                    default: "out"
-                  }
-                },
-                size: {
-                  value: 1
-                }
-              },
-            }
-          }, {
-            maxWidth: 200,
-            options: {
-              maxParticles: 0,
-              particles: {
-                links: {
-                  enable: true,
-                  distance: 24
-                },
-                move: {
-                  enable: true,
-                  speed: 1,
-                  outModes: {
-                    default: "out"
-                  }
-                },
-                size: {
-                  value: .6
-                }
-              },
-            }
-          }
-        ]
+        "retina_detect": true
       }}
     />
   );

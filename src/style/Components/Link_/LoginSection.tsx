@@ -17,6 +17,7 @@ const Left = styled.div`
   height: 100vh;
   box-shadow: 0px 0px 20px #2f3542;
   overflow: hidden;
+ 
   .Logodiv{
     position: absolute;
     left: 0px;
@@ -199,10 +200,6 @@ const Login = styled.form`
 `
 
 const LoginSection = () => {
-  // Sign In
-  const LoginEmail = useRef();
-  const LoginPassword = useRef();
-  const [user, setUser] = useState({});
   
   return (
     <>
