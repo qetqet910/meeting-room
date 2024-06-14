@@ -13,6 +13,7 @@
     "@types/styled-components": "^5.1.34",
     "firebase": "^10.12.2",
     "firebaseui": "^6.1.0",
+    "install": "^0.13.0",
     "lottie-web": "^5.12.2",
     "particlesjs": "^2.2.3",
     "react": "^18.3.1",
