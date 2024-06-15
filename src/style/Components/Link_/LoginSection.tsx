@@ -62,6 +62,10 @@ const Login = styled.form`
   width: 45%;
   height: 40%;
   transform: translate(-50%, -50%);
+  img{
+    margin-bottom: 2rem;
+    transform: scale(.8);
+  }
   .inputs{
     display: flex;
     width: 100%;
@@ -80,19 +84,20 @@ const Login = styled.form`
         top: 50%;
         transform: translateY(-28%);
         color: #4885fe;
-        font-size: 2rem;
+        font-size: 1.8rem;
         transition: all .5s;
       }
       input{
         all: unset;
         width: calc(100% - 62px); height: 100%;
-        padding: 4px;
+        padding: 2px 3px;
         border-bottom: 1px solid #4885fe;
-        font-size: 2rem;
+        font-size: 1.6rem;
         font-weight: bold;
         font-family: 'Rajdhani', sans-serif;
         padding-left: 62px;
         transition: all .5s;
+        border-radius: 50px;
       }
 
       input:not(:placeholder-shown){
@@ -106,29 +111,15 @@ const Login = styled.form`
   .submits{
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
     margin-top: 40px;
-    span{
-      display: block;
-      color: #3f3f3f87;
-      font-size: 1.6rem;
-      font-weight: bold;
-      letter-spacing: -2px;
-      word-spacing: 2px;
-      font-family: 'Rajdhani', sans-serif;
-      margin-top: 3rem;
-    }
-    #tiny{
-      font-size: 1.8rem
-    }
-    button{
+    .btn{
       all: unset;
       position: relative;
-      width: 100%;
-      height: 80%;
-      padding: 16px 0px;
+      width: 48%;
+      height: 60%;
+      padding: 8px 0px;
       font-weight: bold;
       font-family: 'Rajdhani', sans-serif;
       text-align: center;
@@ -145,7 +136,7 @@ const Login = styled.form`
       }
       span{
         display: inline-flex;
-        font-size: 2.2rem;
+        font-size: 1.75rem;
         font-weight: bold;
         font-family: 'Rajdhani', sans-serif;
         margin-left: 18px;
@@ -212,7 +203,8 @@ const LoginSection = () => {
         </Left>
         <Right>
           <Login>
-            <div className="inputs">
+            <img src={Logo} alt="Logo" className="Logo" />
+            <div className="inputs"> 
               <span>
               <input autoComplete='off' placeholder='Please enter your ID' type="text" name='ID' />
                 <FontAwesomeIcon className='FontAwesome' icon={faUser} />
@@ -223,20 +215,14 @@ const LoginSection = () => {
               </span>
             </div>
             <div className="submits">
-              <button name='SignIn'>
+              <button name='SignIn' className='btn'>
                 <FontAwesomeIcon className='FontAwesome' icon={faSignInAlt} />
                 <span>로그인</span>
               </button>
-              <span className='tiny' id='tiny'>
-                다른 계정으로 로그인
-              </span>
-              <span className='tiny'>
-                계정이 없으신가요?
-              </span>
-              <Link to={"/register"}>
-                <FontAwesomeIcon className='FontAwesome' icon={faUserPlus} />
-                <span>회원가입</span>
-              </Link>
+              <button name='SignIn' className='btn'>
+                  <FontAwesomeIcon className='FontAwesome' icon={faSignInAlt} />
+                  <span>회원가입</span>
+                </button>
             </div>
           </Login>
         </Right>
