@@ -1,0 +1,8 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/universal:2",
+    "customizations": {
+      "vscode": {
+        "extensions": ["styled-components.vscode-styled-components", "akamud.vscode-theme-onedark", "helgardrichard.helium-icon-theme"]
+      }
+    }
+  }
