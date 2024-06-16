@@ -5,7 +5,7 @@ import { Particle50 } from 'service/particle/particle';
 import Logo from 'img/Login/logo_transparent.png'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faLock, faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faLock, faSignInAlt, faUserPlus, faRegistered } from '@fortawesome/free-solid-svg-icons'
 
 import { Link } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const CenterDiv = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   background: #14274E;
   border-radius: 50px;
@@ -23,6 +23,7 @@ const CenterDiv = styled.div`
   overflow: hidden;
   .Logo{
     position: absolute;
+    width: 100%;
     top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -30,8 +31,8 @@ const CenterDiv = styled.div`
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    user-select: none;
     img{
-      width: 200%;
       transform: scale(1.07);
     }
   }
@@ -47,13 +48,12 @@ const CenterDiv = styled.div`
       position: relative;
       display: inline-block;
       width: 100%;
-      min-height: 60px;
       margin: 14px 0px;
+      transition: all .5s;
       .FontAwesome{
         position: absolute;
         left: 2%;
-        /* padding-left: 20px; */
-        top: 50%;
+        top: 40%;
         transform: translateY(-50%);
         color: #4885fe;
         font-size: 1.8rem;
@@ -61,56 +61,60 @@ const CenterDiv = styled.div`
       }
       input{
         all: unset;
-        width: calc(100% - 62px); height: 100%;
-        padding: 2px 3px;
+        width: 91%;
+        padding: 2px 3px 5px 3px;
         font-size: 1.6rem;
         font-weight: bold;
         font-family: 'Rajdhani', sans-serif;
         padding-left: 3.2rem;
         transition: all .3s;
+        border-bottom: 1px solid #4885fe;
+        color: #fff;
       }
 
       input:not(:placeholder-shown){
-        border-bottom: 1px solid #1f386b;
+        border-bottom: 1px solid #8097c8;
       }
       input:not(:placeholder-shown) ~ .FontAwesome{
-        color: #1f386b;
+        color: #8097c8;
       }
     }
   }
   .submits{
     display: flex;
-    width: 100%;
-    justify-content: space-between;
+    width: 80%;
+    justify-content: space-around;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 3rem;
     .btn{
       all: unset;
       position: relative;
-      width: 48%;
-      height: 60%;
-      padding: 8px 0px;
+      display: inline-block;
+      /* width: 48%; */
+      /* height: 60%; */
+      padding: 1.2rem 1.4rem 1.2rem 3.4rem;
       font-weight: bold;
       font-family: 'Rajdhani', sans-serif;
       text-align: center;
-      margin-top: 20px;
       cursor: pointer;
       vertical-align: middle;
       background-color: #4885fe;
       border-radius: 5px;
       transition: all .5s;
       .FontAwesome{
-        color: #ffffff;
-        font-size: 2.4rem;
+        position: absolute;
+        left: 8%;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #fff;
+        font-size: 1.9rem;
         transition: all .5s;
       }
       span{
         display: inline-flex;
-        font-size: 1.75rem;
+        font-size: 1.65rem;
         font-weight: bold;
         font-family: 'Rajdhani', sans-serif;
-        margin-left: 18px;
-        margin-top: 2px;
         font-weight: bold;
         color: #fff;
         transition: all .5s;
@@ -158,6 +162,27 @@ const CenterDiv = styled.div`
       }
     }
   }
+  .Ad{
+    display: flex;
+    width: 90%;
+    height: 200px;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10rem 0 4rem 0;
+    background: #1b3260;
+    color: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  p{
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 5rem;
+    font-weight: bold;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+  }
 `
 
 const LoginSection = () => {
@@ -186,9 +211,12 @@ const LoginSection = () => {
             <span>로그인</span>
           </button>
           <button name='SignIn' className='btn'>
-              <FontAwesomeIcon className='FontAwesome' icon={faSignInAlt} />
+              <FontAwesomeIcon className='FontAwesome' icon={faRegistered} />
               <span>회원가입</span>
             </button>
+        </div>
+        <div className='Ad'>
+          광고배너
         </div>
         <p>Meeting Room Reservation Service, ver 1.0<br/>HyeonMin, All rights reserved.</p>
       </CenterDiv>
