@@ -9,84 +9,52 @@ import { faUser, faLock, faSignInAlt, faUserPlus } from '@fortawesome/free-solid
 
 import { Link } from 'react-router-dom';
 
-const Left = styled.div`
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 50%;
+const CenterDiv = styled.div`
+  position: relative;
+  max-width: 480px;
+  width: 100%;
   height: 100vh;
-  box-shadow: 0px 0px 20px #2f3542;
-  overflow: hidden;
- 
-  .Logodiv{
-    position: absolute;
-    left: 0px;
-    user-select: none;
-    pointer-events: none;
-    .Logo{
-      position: fixed;
-      left: 25%;
-      top: 42%;
-      width: 22%;
-      height: 18%;
-      transform: translate(-50%, -30%);
-      z-index: 999;
-    }
-    p{
-      position: fixed;
-      font-size: 1.2rem;
-      text-align: center;
-      color: #cccccc;
-      left: 25.7%;
-      top: 58%;
-      transform: translate(-50%, -50%);
-    }
-  }
-`
-const Right = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 0px;
-  width: 50%;
-  height: 100vh;
-  overflow: hidden;
-`
-
-const centerDiv = styled.div`
-  
-`
-const Login = styled.form`
-  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #14274E;
+  border-radius: 50px;
   flex-direction: column;
-  left: 50%;
-  top: 50%;
-  width: 45%;
-  height: 40%;
-  transform: translate(-50%, -50%);
-  img{
-    margin-bottom: 2rem;
-    transform: scale(.8);
+  overflow: hidden;
+  .Logo{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    img{
+      width: 200%;
+      transform: scale(1.07);
+    }
   }
+
+
   .inputs{
     display: flex;
-    width: 100%;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 0 1rem;
     span{
       position: relative;
-      display: block;
+      display: inline-block;
       width: 100%;
       min-height: 60px;
       margin: 14px 0px;
       .FontAwesome{
         position: absolute;
-        padding-left: 20px;
+        left: 2%;
+        /* padding-left: 20px; */
         top: 50%;
-        transform: translateY(-28%);
+        transform: translateY(-50%);
         color: #4885fe;
         font-size: 1.8rem;
         transition: all .5s;
@@ -95,13 +63,11 @@ const Login = styled.form`
         all: unset;
         width: calc(100% - 62px); height: 100%;
         padding: 2px 3px;
-        border-bottom: 1px solid #4885fe;
         font-size: 1.6rem;
         font-weight: bold;
         font-family: 'Rajdhani', sans-serif;
-        padding-left: 62px;
-        transition: all .5s;
-        border-radius: 50px;
+        padding-left: 3.2rem;
+        transition: all .3s;
       }
 
       input:not(:placeholder-shown){
@@ -198,38 +164,34 @@ const LoginSection = () => {
   
   return (
     <>
-        <Left>
-          <Particle50 />
-          <div className='Logodiv'>
-            <img src={Logo} alt="Logo" className="Logo" />
-            <p>Meeting Room Reservation Service, ver 1.0<br/>HyeonMin, All rights reserved.</p>
-          </div>
-        </Left>
-        <Right>
-          <Login>
-            <img src={Logo} alt="Logo" className="Logo" />
-            <div className="inputs"> 
-              <span>
-              <input autoComplete='off' placeholder='Please enter your ID' type="text" name='ID' />
-                <FontAwesomeIcon className='FontAwesome' icon={faUser} />
-              </span>
-              <span>
-                <input autoComplete='off' placeholder='Please enter your Password' type="password" name='password' />
-                <FontAwesomeIcon className='FontAwesome' icon={faLock} />
-              </span>
-            </div>
-            <div className="submits">
-              <button name='SignIn' className='btn'>
-                <FontAwesomeIcon className='FontAwesome' icon={faSignInAlt} />
-                <span>로그인</span>
-              </button>
-              <button name='SignIn' className='btn'>
-                  <FontAwesomeIcon className='FontAwesome' icon={faSignInAlt} />
-                  <span>회원가입</span>
-                </button>
-            </div>
-          </Login>
-        </Right>
+      <Particle50 />
+      <CenterDiv> 
+        <div className='Logo'>
+          <img src={Logo} alt="Logo" />
+        </div>
+
+        <div className="inputs"> 
+          <span>
+            <input autoComplete='off' placeholder='Please enter your ID' type="text" name='ID' />
+            <FontAwesomeIcon className='FontAwesome' icon={faUser} />
+          </span>
+          <span>
+            <input autoComplete='off' placeholder='Please enter your Password' type="password" name='password' />
+            <FontAwesomeIcon className='FontAwesome' icon={faLock} />
+          </span>
+        </div>
+        <div className="submits">
+          <button name='SignIn' className='btn'>
+            <FontAwesomeIcon className='FontAwesome' icon={faSignInAlt} />
+            <span>로그인</span>
+          </button>
+          <button name='SignIn' className='btn'>
+              <FontAwesomeIcon className='FontAwesome' icon={faSignInAlt} />
+              <span>회원가입</span>
+            </button>
+        </div>
+        <p>Meeting Room Reservation Service, ver 1.0<br/>HyeonMin, All rights reserved.</p>
+      </CenterDiv>
     </>
   );  
 }

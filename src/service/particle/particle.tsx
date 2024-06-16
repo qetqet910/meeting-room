@@ -16,7 +16,7 @@ export const Particle50 = () => {
           color: '#14274E',
         },
         style: {
-          width: '50%'
+          width: '100%'
         },
         "particles": {
           "number": {
