@@ -34,7 +34,7 @@ const Left = styled.div`
     }
     p{
       position: fixed;
-      font-size: 1.6rem;
+      font-size: 1.2rem;
       text-align: center;
       color: #cccccc;
       left: 25.7%;
@@ -50,6 +50,10 @@ const Right = styled.div`
   width: 50%;
   height: 100vh;
   overflow: hidden;
+`
+
+const centerDiv = styled.div`
+  
 `
 const Login = styled.form`
   position: absolute;

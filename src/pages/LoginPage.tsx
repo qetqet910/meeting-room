@@ -21,7 +21,7 @@ const Pages = styled.div`
 function Login() {
   return (
     <Pages>
-        <LoginSection />
+      <LoginSection />
     </Pages>
   );
 }
