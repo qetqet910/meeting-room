@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import { Link } from 'react-router-dom';
 
 import Room1 from 'img/Main/Rooms/room1.jpg';
 import Room2 from 'img/Main/Rooms/room2.jpg';
@@ -171,6 +172,7 @@ const Cards = styled.a`
     transition: all .25s;
     text-decoration: none;
     z-index: 999;
+    /* a{text-decoration: none;} */
     &:hover{
         box-shadow: 0px 0px 10px #2f3542;
     }
@@ -237,9 +239,10 @@ const Cards = styled.a`
 `   
 
 export function RoomPartition(){
+    // 백엔드 연동 후 코드 수정
     return(
         <RoomUnit>
-            <Cards href="/home">
+            <Cards href="Rooms/R1">
                 <div className='top'>
                     <img src={Room1} alt="Room1" />
                 </div>
@@ -255,7 +258,7 @@ export function RoomPartition(){
                     </div>
                 </div>
             </Cards>        
-            <Cards href="/home">
+            <Cards href="Rooms/R2">
                 <div className='top'>
                     <img src={Room2} alt="Room2" />
                 </div>
@@ -271,7 +274,7 @@ export function RoomPartition(){
                     </div>
                 </div>
             </Cards>        
-            <Cards href="/home">
+            <Cards href="Rooms/R3">
                 <div className='top'>
                     <img src={Room3} alt="Room3" />
                 </div>
@@ -287,7 +290,7 @@ export function RoomPartition(){
                     </div>
                 </div>
             </Cards>       
-            <Cards href="/home">
+            <Cards href="Rooms/R4">
                 <div className='top'>
                     <img src={Room4} alt="Room4" />
                 </div>
@@ -303,7 +306,7 @@ export function RoomPartition(){
                     </div>
                 </div>
             </Cards>        
-            <Cards href="/home">         
+            <Cards href="Rooms/R1">         
                 <div className='top'>
                     <img src={Room5} alt="Room5" />
                 </div>
@@ -319,7 +322,7 @@ export function RoomPartition(){
                     </div>
                 </div>
             </Cards>       
-            <Cards href="/home">
+            <Cards href="Rooms/R1">
                 <div className='top'>
                     <img src={Room6} alt="Room6" />
                 </div>
@@ -335,7 +338,7 @@ export function RoomPartition(){
                     </div>
                 </div>
             </Cards>        
-            <Cards href="/home">
+            <Cards href="Rooms/R1">
                 <div className='top'>
                     <img src={Room7} alt="Room7" />
                 </div>
@@ -351,7 +354,7 @@ export function RoomPartition(){
                     </div>
                 </div>
             </Cards>        
-            <Cards href="/home">
+            <Cards href="Rooms/R1">
                 <div className='top'>
                     <img src={Room8} alt="Room8" />
                 </div>
@@ -367,7 +370,7 @@ export function RoomPartition(){
                     </div>
                 </div>
             </Cards>        
-            <Cards href="/home">
+            <Cards href="Rooms/R1">
                 <div className='top'>
                     <img src={Room9} alt="Room9" />
                 </div>
@@ -383,7 +386,7 @@ export function RoomPartition(){
                     </div>
                 </div>
             </Cards>
-            <Cards href="/home">
+            <Cards href="Rooms/R1">
                 <div className='top'>
                     <img src={Room10} alt="Room10" />
                 </div>
