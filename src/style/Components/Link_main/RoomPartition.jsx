@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom';
 
 import Room1 from 'img/Main/Rooms/room1.jpg';
@@ -11,6 +12,9 @@ import Room7 from 'img/Main/Rooms/room7.jpg';
 import Room8 from 'img/Main/Rooms/room8.jpg';
 import Room9 from 'img/Main/Rooms/room9.jpg';
 import Room10 from 'img/Main/Rooms/room10.jpg';
+
+import { db } from '../../../firbase';
+import { doc, getDoc } from 'firebase/firestore';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
@@ -239,7 +243,18 @@ const Cards = styled.a`
 `   
 
 export function RoomPartition(){
-    // 백엔드 연동 후 코드 수정
+    const [test, setTest] = useState()
+    async function getTest() {
+      const docRef = doc(db, "rooms", "1");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setTest(docSnap.data())
+      }
+    };
+    useEffect(() => {
+      getTest()
+    }, [])
+
     return(
         <RoomUnit>
             <Cards href="Rooms/R1">
@@ -248,7 +263,8 @@ export function RoomPartition(){
                 </div>
                 <div className='bottom'>
                     <div className="left">
-                        <h1 className='RoomTitle'>메인 회의실</h1>
+                        {test !== undefined &&
+                        <h1 className='RoomTitle'>{test.name}</h1>}
                     </div>
                     <div className="right">
                         <span className='MaxPeople'>수용인원 : 30<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
