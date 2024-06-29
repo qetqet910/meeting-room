@@ -244,13 +244,18 @@ const Cards = styled.a`
 
 export function RoomPartition(){
     const [test, setTest] = useState()
+    // async - await로 데이터 fetch 대기
     async function getTest() {
-      const docRef = doc(db, "rooms", "1");
+      // document에 대한 참조 생성
+      const docRef = doc(db, "items", "1");
+      // 참조에 대한 Snapshot 쿼리
       const docSnap = await getDoc(docRef);
+  
       if (docSnap.exists()) {
         setTest(docSnap.data())
       }
     };
+    // 최초 마운트 시에 getTest import
     useEffect(() => {
       getTest()
     }, [])
@@ -263,8 +268,7 @@ export function RoomPartition(){
                 </div>
                 <div className='bottom'>
                     <div className="left">
-                        {test !== undefined &&
-                        <h1 className='RoomTitle'>{test.name}</h1>}
+                        {test !== undefined && <h1 className='RoomTitle'>{test.name}</h1>}
                     </div>
                     <div className="right">
                         <span className='MaxPeople'>수용인원 : 30<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
