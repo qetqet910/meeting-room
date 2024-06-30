@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
 
-import Room1 from 'img/Main/Rooms/room1.jpg';
 import Room2 from 'img/Main/Rooms/room2.jpg';
 import Room3 from 'img/Main/Rooms/room3.jpg';
 import Room4 from 'img/Main/Rooms/room4.jpg';
@@ -15,6 +13,7 @@ import Room10 from 'img/Main/Rooms/room10.jpg';
 
 import { db } from '../../../firbase';
 import { doc, getDoc } from 'firebase/firestore';
+import { useParams } from "react-router-dom"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
@@ -243,48 +242,47 @@ const Cards = styled.a`
 `   
 
 export function RoomPartition(){
-    const [test, setTest] = useState()
-    // async - await로 데이터 fetch 대기
-    async function getTest() {
-      // document에 대한 참조 생성
-      const docRef = doc(db, "items", "1");
-      // 참조에 대한 Snapshot 쿼리
-      const docSnap = await getDoc(docRef);
-  
-      if (docSnap.exists()) {
-        setTest(docSnap.data())
-      }
-    };
-    // 최초 마운트 시에 getTest import
-    useEffect(() => {
-      getTest()
-    }, [])
+    const { id } = useParams()
+    const [ countryData, setCountryData ] = useState()
+    
+    async function getDocument() {
+        const docRef = doc(db, "rooms")
+        const docSnap = await getDoc(docRef)
+        setCountryData(docSnap.data())
+    }
 
+    useEffect(() => {
+        getDocument(id)
+    }, [id])
+// 여기부터 다시 하면 됌!!!
     return(
         <RoomUnit>
-            <Cards href="Rooms/R1">
-                <div className='top'>
-                    <img src={Room1} alt="Room1" />
-                </div>
-                <div className='bottom'>
-                    <div className="left">
-                        {test !== undefined && <h1 className='RoomTitle'>{test.name}</h1>}
+            {countryData !== undefined &&
+                <Cards href="Rooms/R1">
+                    <div className='top'>
+                        <img src={countryData.img} alt="Room1" />
                     </div>
-                    <div className="right">
-                        <span className='MaxPeople'>수용인원 : 30<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
+                    <div className='bottom'>
+                        <div className="left">
+                        <h1 className='RoomTitle'>{countryData.name}</h1>
+                        </div>
+                        <div className="right">
+                            <span className='MaxPeople'>수용인원 : {countryData.user}<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
+                        </div>
+                        <div className='realbottom'>
+                            <h4 className='RoomDes'>{countryData.description}</h4>
+                        </div>
                     </div>
-                    <div className='realbottom'>
-                        <h4 className='RoomDes'>회사 건물 1층 복도쪽에 있는 메인 회의실로 수용 인원이 제일 많다</h4>
-                    </div>
-                </div>
-            </Cards>        
+                </Cards>   
+            }
+     
             <Cards href="Rooms/R2">
                 <div className='top'>
                     <img src={Room2} alt="Room2" />
                 </div>
                 <div className='bottom'>
                     <div className="left">
-                        <h1 className='RoomTitle'>대 회의실</h1>
+                        <h1 className='RoomTitle'>창가 회의실</h1>
                     </div>
                     <div className="right">
                         <span className='MaxPeople'>수용인원 : 20<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
