@@ -12,7 +12,7 @@ import Room9 from 'img/Main/Rooms/room9.jpg';
 import Room10 from 'img/Main/Rooms/room10.jpg';
 
 import { db } from '../../../firbase';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, getDocs, collection } from 'firebase/firestore';
 import { useParams } from "react-router-dom"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -245,181 +245,31 @@ export function RoomPartition(){
     const { id } = useParams()
     const [ countryData, setCountryData ] = useState()
     
-    async function getDocument() {
-        const docRef = doc(db, "rooms")
-        const docSnap = await getDoc(docRef)
-        setCountryData(docSnap.data())
-    }
+    const query = getDocs(collection(db, "rooms"));
 
-    useEffect(() => {
-        getDocument(id)
-    }, [id])
-// 여기부터 다시 하면 됌!!!
+
     return(
         <RoomUnit>
-            {countryData !== undefined &&
-                <Cards href="Rooms/R1">
-                    <div className='top'>
-                        <img src={countryData.img} alt="Room1" />
-                    </div>
-                    <div className='bottom'>
-                        <div className="left">
-                        <h1 className='RoomTitle'>{countryData.name}</h1>
+            {
+                countryData.map((description, img, name, user) => (
+                    <Cards href="Rooms/R1">
+                        <div className='top'>
+                            <img src={img} alt="Room1" />
                         </div>
-                        <div className="right">
-                            <span className='MaxPeople'>수용인원 : {countryData.user}<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
+                        <div className='bottom'>
+                            <div className="left">
+                            <h1 className='RoomTitle'>{name}</h1>
+                            </div>
+                            <div className="right">
+                                <span className='MaxPeople'>수용인원 : {user}<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
+                            </div>
+                            <div className='realbottom'>
+                                <h4 className='RoomDes'>{description}</h4>
+                            </div>
                         </div>
-                        <div className='realbottom'>
-                            <h4 className='RoomDes'>{countryData.description}</h4>
-                        </div>
-                    </div>
-                </Cards>   
-            }
-     
-            <Cards href="Rooms/R2">
-                <div className='top'>
-                    <img src={Room2} alt="Room2" />
-                </div>
-                <div className='bottom'>
-                    <div className="left">
-                        <h1 className='RoomTitle'>창가 회의실</h1>
-                    </div>
-                    <div className="right">
-                        <span className='MaxPeople'>수용인원 : 20<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
-                    </div>
-                    <div className='realbottom'>
-                        <h4 className='RoomDes'>회사 건물 1층 창가쪽에 있는 회의실로 방음이 잘 되는 것이 특징이다</h4>
-                    </div>
-                </div>
-            </Cards>        
-            <Cards href="Rooms/R3">
-                <div className='top'>
-                    <img src={Room3} alt="Room3" />
-                </div>
-                <div className='bottom'>
-                    <div className="left">
-                        <h1 className='RoomTitle'>소 회의실</h1>
-                    </div>
-                    <div className="right">
-                        <span className='MaxPeople'>수용인원 : 10<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
-                    </div>
-                    <div className='realbottom'>
-                        <h4 className='RoomDes'>회사 건물 2층 복도쪽에 있는 회의실로 대형 스크린이 있는 게 특징이다</h4>
-                    </div>
-                </div>
-            </Cards>       
-            <Cards href="Rooms/R4">
-                <div className='top'>
-                    <img src={Room4} alt="Room4" />
-                </div>
-                <div className='bottom'>
-                    <div className="left">
-                        <h1 className='RoomTitle'>1번 회의실</h1>
-                    </div>
-                    <div className="right">
-                        <span className='MaxPeople'>수용인원 : 6<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
-                    </div>
-                    <div className='realbottom'>
-                        <h4 className='RoomDes'>회사 건물 3층 있는 회의실로 적은 규모의 사람들이 모여 간단한 회의를 하기 좋은 것이 특징이다</h4>
-                    </div>
-                </div>
-            </Cards>        
-            <Cards href="Rooms/R1">         
-                <div className='top'>
-                    <img src={Room5} alt="Room5" />
-                </div>
-                <div className='bottom'>
-                    <div className="left">
-                        <h1 className='RoomTitle'>2번 회의실</h1>
-                    </div>
-                    <div className="right">
-                        <span className='MaxPeople'>수용인원 : 6<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
-                    </div>
-                    <div className='realbottom'>
-                        <h4 className='RoomDes'>회사 건물 3층 1번 회의실 옆에 있는 회의실로 특징은 1번과 같다</h4>
-                    </div>
-                </div>
-            </Cards>       
-            <Cards href="Rooms/R1">
-                <div className='top'>
-                    <img src={Room6} alt="Room6" />
-                </div>
-                <div className='bottom'>
-                    <div className="left">
-                        <h1 className='RoomTitle'>3번 회의실</h1>
-                    </div>
-                    <div className="right">
-                        <span className='MaxPeople'>수용인원 : 10<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
-                    </div>
-                    <div className='realbottom'>
-                        <h4 className='RoomDes'>회사 건물 3층 창가쪽에 있는 회의실로 방음이 잘 되는 것이 특징이다</h4>
-                    </div>
-                </div>
-            </Cards>        
-            <Cards href="Rooms/R1">
-                <div className='top'>
-                    <img src={Room7} alt="Room7" />
-                </div>
-                <div className='bottom'>
-                    <div className="left">
-                        <h1 className='RoomTitle'>4번 회의실</h1>
-                    </div>
-                    <div className="right">
-                        <span className='MaxPeople'>수용인원 : 10<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
-                    </div>
-                    <div className='realbottom'>
-                        <h4 className='RoomDes'>회사 건물 3층 창가쪽에 있는 회의실로 방음이 잘 되는 것이 특징이다</h4>
-                    </div>
-                </div>
-            </Cards>        
-            <Cards href="Rooms/R1">
-                <div className='top'>
-                    <img src={Room8} alt="Room8" />
-                </div>
-                <div className='bottom'>
-                    <div className="left">
-                        <h1 className='RoomTitle'>5번 회의실</h1>
-                    </div>
-                    <div className="right">
-                        <span className='MaxPeople'>수용인원 : 8<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
-                    </div>
-                    <div className='realbottom'>
-                        <h4 className='RoomDes'>회사 건물 3층 창가쪽에 있는 회의실로 방음이 잘 되는 것이 특징이다</h4>
-                    </div>
-                </div>
-            </Cards>        
-            <Cards href="Rooms/R1">
-                <div className='top'>
-                    <img src={Room9} alt="Room9" />
-                </div>
-                <div className='bottom'>
-                    <div className="left">
-                        <h1 className='RoomTitle'>6번 회의실</h1>
-                    </div>
-                    <div className="right">
-                        <span className='MaxPeople'>수용인원 : 8<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
-                    </div>
-                    <div className='realbottom'>
-                        <h4 className='RoomDes'>회사 건물 3층 창가쪽에 있는 회의실로 방음이 잘 되는 것이 특징이다</h4>
-                    </div>
-                </div>
-            </Cards>
-            <Cards href="Rooms/R1">
-                <div className='top'>
-                    <img src={Room10} alt="Room10" />
-                </div>
-                <div className='bottom'>
-                    <div className="left">
-                        <h1 className='RoomTitle'>7번 회의실</h1>
-                    </div>
-                    <div className="right">
-                        <span className='MaxPeople'>수용인원 : 4<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
-                    </div>
-                    <div className='realbottom'>
-                        <h4 className='RoomDes'>회사 건물 3층 창가쪽에 있는 회의실로 방음이 잘 되는 것이 특징이다</h4>
-                    </div>
-                </div>
-            </Cards>                 
+                    </Cards>  
+                ))
+            }  
         </RoomUnit>
     )
 }
