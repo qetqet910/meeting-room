@@ -1,19 +1,8 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 
-import Room2 from 'img/Main/Rooms/room2.jpg';
-import Room3 from 'img/Main/Rooms/room3.jpg';
-import Room4 from 'img/Main/Rooms/room4.jpg';
-import Room5 from 'img/Main/Rooms/room5.jpg';
-import Room6 from 'img/Main/Rooms/room6.jpg';
-import Room7 from 'img/Main/Rooms/room7.jpg';
-import Room8 from 'img/Main/Rooms/room8.jpg';
-import Room9 from 'img/Main/Rooms/room9.jpg';
-import Room10 from 'img/Main/Rooms/room10.jpg';
-
 import { db } from '../../../firbase';
-import { doc, getDoc, getDocs, collection } from 'firebase/firestore';
-import { useParams } from "react-router-dom"
+import { getDocs, collection } from 'firebase/firestore';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
@@ -242,29 +231,35 @@ const Cards = styled.a`
 `   
 
 export function RoomPartition(){
-    const { id } = useParams()
-    const [ countryData, setCountryData ] = useState()
+    // const { id } = useParams()
+    const [ countryData, setCountryData ] = useState([])
+    // countryData.push([description, img, name, user]);
     
-    const query = getDocs(collection(db, "rooms"));
+    useEffect(async () => {
+        const query = await getDocs(collection(db, "rooms"));
+        query.forEach((doc) => {
+            countryData.push(doc.data());
+        });
 
-
+        console.log(countryData)
+    }, [countryData])
     return(
         <RoomUnit>
             {
-                countryData.map((description, img, name, user) => (
+                countryData.map((room) => (
                     <Cards href="Rooms/R1">
                         <div className='top'>
-                            <img src={img} alt="Room1" />
+                            <img src={room.img} alt="Room1" />
                         </div>
                         <div className='bottom'>
                             <div className="left">
-                            <h1 className='RoomTitle'>{name}</h1>
+                            <h1 className='RoomTitle'>{room.name}</h1>
                             </div>
                             <div className="right">
-                                <span className='MaxPeople'>수용인원 : {user}<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
+                                <span className='MaxPeople'>수용인원 : {room.user}<FontAwesomeIcon className='FontAwesome' icon={faUsers} /></span>
                             </div>
                             <div className='realbottom'>
-                                <h4 className='RoomDes'>{description}</h4>
+                                <h4 className='RoomDes'>{room.description}</h4>
                             </div>
                         </div>
                     </Cards>  
@@ -273,3 +268,16 @@ export function RoomPartition(){
         </RoomUnit>
     )
 }
+
+
+/*
+    useEffect(() => {
+  async function fetchData() {
+    // You can await here
+    const response = await MyAPI.getData(someId);
+    // ...
+  }
+  fetchData();
+}, [someId]); // Or [] if effect doesn't need props or state
+이거 해결하기
+*/
