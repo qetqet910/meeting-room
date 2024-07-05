@@ -231,22 +231,26 @@ const Cards = styled.a`
 `   
 
 export function RoomPartition(){
-    // const { id } = useParams()
-    const [ countryData, setCountryData ] = useState([])
-    // countryData.push([description, img, name, user]);
-    
-    useEffect(async () => {
+    const [ roomData, setRoomData ] = useState([])
+
+    async function getRooms(){
         const query = await getDocs(collection(db, "rooms"));
         query.forEach((doc) => {
-            countryData.push(doc.data());
+            setRoomData(prevList => [...prevList, doc.data()])
+            // id 추가하기
         });
+    }
+    
+    useEffect(() => {
+        getRooms();
+    }, [])
+    
+    console.log(roomData)
 
-        console.log(countryData)
-    }, [countryData])
     return(
         <RoomUnit>
             {
-                countryData.map((room) => (
+                roomData.map((room) => (
                     <Cards href="Rooms/R1">
                         <div className='top'>
                             <img src={room.img} alt="Room1" />
