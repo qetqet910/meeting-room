@@ -13,16 +13,7 @@ const HomeGrid = styled.section`
     position: relative;
     width: 100vw;
     height: 100vh;
-    display: grid;
-    grid-template-columns: 15% 85%;
-    grid-template-rows: 6% 94%;
-    @media screen and (max-width: 560px){
-        grid-template-columns: 100%;
-        grid-template-rows: 8% 92%;
-        .Menu{
-            display: none;
-        }
-    }
+    
 `
 
 function HomeSection(){

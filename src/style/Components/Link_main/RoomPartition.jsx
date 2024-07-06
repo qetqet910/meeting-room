@@ -236,8 +236,11 @@ export function RoomPartition(){
     async function getRooms(){
         const query = await getDocs(collection(db, "rooms"));
         query.forEach((doc) => {
+            // const obj = {
+            //     id: doc.id
+            // }
+            // Object.assign(obj, doc.data());
             setRoomData(prevList => [...prevList, doc.data()])
-            // id 추가하기
         });
     }
     
@@ -251,7 +254,7 @@ export function RoomPartition(){
         <RoomUnit>
             {
                 roomData.map((room) => (
-                    <Cards href="Rooms/R1">
+                    <Cards href={"home/" + room.id}>
                         <div className='top'>
                             <img src={room.img} alt="Room1" />
                         </div>

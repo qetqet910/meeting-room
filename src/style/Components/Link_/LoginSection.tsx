@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const CenterDiv = styled.div`
   position: relative;
-  max-width: 480px;
+  max-width: 880px;
   width: 100%;
   height: 100vh;
   display: flex;
