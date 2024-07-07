@@ -11,9 +11,9 @@ import ReactDOM from 'react-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle/>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
+          <GlobalStyle/>
           <App />
         </ThemeProvider>
       </BrowserRouter>

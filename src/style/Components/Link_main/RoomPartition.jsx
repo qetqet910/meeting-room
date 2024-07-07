@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-
 import { db } from '../../../firbase';
 import { getDocs, collection } from 'firebase/firestore';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,13 +9,13 @@ const RoomUnit = styled.div`
     position: relative;
     display: grid;
     height: 100%;
-    padding: 3rem 0px 0rem 3rem;
-    grid-template-columns: repeat(4, 370px);
-    grid-template-rows: repeat(3, 370px);
-    gap: 30px 20px;
+    padding: 8rem 1rem 0 1rem;
+    margin: 0 auto;
+    grid-template-columns: repeat(2, 36.5rem);
+    grid-template-rows: repeat(5, 37rem);
+    gap: 2rem 2rem;
     overflow-y: scroll;
-    z-index: 1;
-    background-color: #fff;
+    background: #f5f4f4;
 
     &::-webkit-scrollbar-track{
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -25,27 +23,19 @@ const RoomUnit = styled.div`
         border-radius: 10px;
     }
     &::-webkit-scrollbar{
-        width: 10px;
+        width: 5px;
         background-color: #F5F5F5;
     }
     &::-webkit-scrollbar-thumb{
-        background-color: #AAA;
+        background-color: #272727;
         border-radius: 10px;
-        background-image: -webkit-linear-gradient(90deg,
-                                                #2f3542 25%,
-                                                #394358 25%,
-                                                #394358 50%,
-                                                #2f3542 50%,
-                                                #2f3542 75%,
-                                                #394358 75%,
-                                                #394358)
     }
 
     // Media
     // @Step: 160px @Value: 45px
     // @Param: Cards
 
-    @media screen and (max-width: 1760px) {
+    /* @media screen and (max-width: 1760px) {
         grid-template-columns: repeat(4, 325px);
         grid-template-rows: repeat(3, 325px);
         a{
@@ -150,13 +140,13 @@ const RoomUnit = styled.div`
             width: 240px;
             min-height: 240px;  
         }
-    }
+    } */
 `
 const Cards = styled.a`
     position: relative;
     display: block;
-    width: 370px;
-    min-height: 370px;
+    width: 100%;
+    min-height: 100%;
     border-radius: 10px;
     box-shadow: 3px 3px 10px #dfe4ea;
     border-radius: 10px;
@@ -164,6 +154,8 @@ const Cards = styled.a`
     transition: all .25s;
     text-decoration: none;
     z-index: 999;
+    background: #f6f5f1;
+
     /* a{text-decoration: none;} */
     &:hover{
         box-shadow: 0px 0px 10px #2f3542;

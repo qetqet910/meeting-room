@@ -9,7 +9,7 @@ const BtnsBox = styled.div`
     align-items: center;
     right: 2%;
     bottom: 4%;
-    z-index: 999;
+    z-index: 99999;
     border-radius: 50px;
     padding: 3px 2px;
 
@@ -18,46 +18,52 @@ const BtnsBox = styled.div`
     }
     input[id="chkbox"]:checked ~ a{
         &:nth-of-type(1){
-            transform: translateX(-113%);
+            transform: translateX(-103%);
         }
         &:nth-of-type(2){
-            transform: translateX(-213%);
+            transform: translateX(-206%);
         }
     }
     label{
         display: grid;
         place-items: center;
         padding: 10px;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
         margin: 0px 2px;
-        background-color: #333;
-        color: white;
+        background-color: #FED766;
+        box-shadow: 0px 0px 2px #14274e;
+        color: #14274E;
         min-width: 20px;
         min-height: 20px;
         font-size: 2.2rem;
         cursor: pointer;
         z-index: 999;
         transition: all .5s;
-        box-shadow: 0px 0px 5px #fff;
+        /* box-shadow: 0px 0px 5px #fff; */
         .FontAwesome{
             pointer-events: none;
         }
     }
 `
 const Toolbtn = styled.a`
+    width: 20px;
+    height: 20px;
     position: absolute;
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     border-radius: 50%;
     margin: 0px 2px;
-    background-color: #333;
-    color: white;
+    background-color: #FED766;
+    box-shadow: 0px 0px 2px #14274e;
+    color: #14274E;
     min-width: 20px;
     min-height: 20px;
     font-size: 2.2rem;
     transition: all .5s;
-    box-shadow: 0px 0px 5px #fff;
     cursor: pointer;
     .FontAwesome{
         pointer-events: none;

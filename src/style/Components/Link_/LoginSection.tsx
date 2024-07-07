@@ -1,104 +1,87 @@
-import { useRef, useState } from 'react';
 import styled from 'styled-components';
-
 import { Particle50 } from 'service/particle/particle';
 import Logo from 'img/Login/logo_transparent.png'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faSignInAlt, faUserPlus, faRegistered } from '@fortawesome/free-solid-svg-icons'
 
-import { Link } from 'react-router-dom';
-
 const CenterDiv = styled.div`
   position: relative;
-  max-width: 880px;
+  max-width: 780px;
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  background: #14274E;
-  border-radius: 50px;
   flex-direction: column;
   overflow: hidden;
+  background: linear-gradient(120deg,#463b7bac, #14274E60);
   .Logo{
-    position: absolute;
     width: 100%;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     user-select: none;
     img{
-      transform: scale(1.07);
+      width: 22vw;
     }
   }
-
-
   .inputs{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    min-width: 420px;
     padding: 0 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px #FED766;
+    transition: all .5s;
+    margin-top: 7rem; /*            */
+    margin-bottom: 10rem;
     span{
       position: relative;
       display: inline-block;
       width: 100%;
-      margin: 14px 0px;
-      transition: all .5s;
+      border-bottom: 1px solid #fadf8e9e;
       .FontAwesome{
         position: absolute;
         left: 2%;
-        top: 40%;
-        transform: translateY(-50%);
-        color: #4885fe;
+        top: 50%;
+        transform: translate(-20%, -50%);
+        color: #FED766;
         font-size: 1.8rem;
         transition: all .5s;
       }
       input{
         all: unset;
-        width: 91%;
-        padding: 2px 3px 5px 3px;
-        font-size: 1.6rem;
+        height: 7rem;
+        width: calc(100% - 3.5rem);
+        font-size: 1.8rem;
         font-weight: bold;
-        font-family: 'Rajdhani', sans-serif;
-        padding-left: 3.2rem;
-        transition: all .3s;
-        border-bottom: 1px solid #4885fe;
-        color: #fff;
-      }
-
-      input:not(:placeholder-shown){
-        border-bottom: 1px solid #8097c8;
-      }
-      input:not(:placeholder-shown) ~ .FontAwesome{
-        color: #8097c8;
+        font-family: "Ga Maamli", sans-serif;
+        font-weight: 400;
+        padding-left: 3.5rem;
+        border-radius: 2px;
+        /* #fadf8e */
+        color: #f6f5f1;
       }
     }
   }
   .submits{
     display: flex;
-    width: 80%;
     justify-content: space-around;
     align-items: center;
-    margin-top: 3rem;
+    width: 100%;
+    height: 7rem;
     .btn{
       all: unset;
       position: relative;
       display: inline-block;
-      /* width: 48%; */
-      /* height: 60%; */
-      padding: 1.2rem 1.4rem 1.2rem 3.4rem;
+      padding: 1.2rem 1.4rem 1.2rem 3.4rem; 
       font-weight: bold;
-      font-family: 'Rajdhani', sans-serif;
       text-align: center;
       cursor: pointer;
       vertical-align: middle;
-      background-color: #4885fe;
       border-radius: 5px;
       transition: all .5s;
       .FontAwesome{
@@ -106,21 +89,22 @@ const CenterDiv = styled.div`
         left: 8%;
         top: 50%;
         transform: translateY(-50%);
-        color: #fff;
-        font-size: 1.9rem;
+        color: #fff1c8;
+        font-size: 1.8rem;
         transition: all .5s;
       }
       span{
         display: inline-flex;
-        font-size: 1.65rem;
+        border-bottom: none;
+        font-size: 1.6rem;
         font-weight: bold;
-        font-family: 'Rajdhani', sans-serif;
+        font-family: "Jua", sans-serif;
         font-weight: bold;
-        color: #fff;
+        color: #FED766;
         transition: all .5s;
       }
       &:hover{
-        transform: translateY(-4px);
+        transform: translateY(-1px);
       }
     }
     a{
@@ -129,13 +113,13 @@ const CenterDiv = styled.div`
       height: 50%;
       padding: 4px;
       font-weight: bold;
-      font-family: 'Rajdhani', sans-serif;
+      font-family: "Jua", sans-serif;
       text-align: center;
       cursor: pointer;
       transition: all .5s;
       .FontAwesome{
         color: #3f3f3fba;
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         transition: all .5s;
       }
       span{
@@ -155,33 +139,18 @@ const CenterDiv = styled.div`
         height: 2px;
         background-color: #3f3f3f9e;
       }
-      &:hover{
-        &::after{
-          background-color: #272727e1;
-        }
-      }
     }
   }
-  .Ad{
-    display: flex;
-    width: 90%;
-    height: 200px;
-    justify-content: space-around;
-    align-items: center;
-    margin: 10rem 0 4rem 0;
-    background: #1b3260;
-    color: #fff;
-    border-radius: 1rem;
-    overflow: hidden;
-  }
   p{
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
     display: inline-block;
-    color: #fff;
+    color: #f6f5f1;
     text-align: center;
-    margin-bottom: 5rem;
     font-weight: bold;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1rem;
+    font-size: .8rem;
   }
 `
 
@@ -197,15 +166,14 @@ const LoginSection = () => {
 
         <div className="inputs"> 
           <span>
-            <input autoComplete='off' placeholder='Please enter your ID' type="text" name='ID' />
+            <input autoComplete='off' placeholder='아이디' type="text" name='ID' />
             <FontAwesomeIcon className='FontAwesome' icon={faUser} />
           </span>
           <span>
-            <input autoComplete='off' placeholder='Please enter your Password' type="password" name='password' />
+            <input autoComplete='off' placeholder='비밀번호' type="password" name='password' />
             <FontAwesomeIcon className='FontAwesome' icon={faLock} />
           </span>
-        </div>
-        <div className="submits">
+          <div className="submits">
           <button name='SignIn' className='btn'>
             <FontAwesomeIcon className='FontAwesome' icon={faSignInAlt} />
             <span>로그인</span>
@@ -215,8 +183,6 @@ const LoginSection = () => {
               <span>회원가입</span>
             </button>
         </div>
-        <div className='Ad'>
-          광고배너
         </div>
         <p>Meeting Room Reservation Service, ver 1.0<br/>HyeonMin, All rights reserved.</p>
       </CenterDiv>

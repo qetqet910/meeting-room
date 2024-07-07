@@ -1,11 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset'
 
 const GlobalStyle = createGlobalStyle`
-    ${reset}
     @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Lekton&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Ga+Maamli&display=swap');
     /* http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126
     License: none (public domain)
@@ -38,6 +37,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         line-height: 1;
+        background: linear-gradient(120deg,#463b7be4, #14274Ee4);
     }
     ol, ul {
         list-style: none;
