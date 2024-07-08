@@ -18,8 +18,8 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
         <Route path="/" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
-        <Route path="/home" element={<HomeSection />}/>
-        <Route path="/home/*" element={<Reservation />} />
+        <Route path="/rooms" element={<HomeSection />}/>
+        <Route path="/rooms/room/*" element={<Reservation />} />
       </Routes>
     </div>
   );

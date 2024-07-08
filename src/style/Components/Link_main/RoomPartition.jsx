@@ -239,14 +239,12 @@ export function RoomPartition(){
     useEffect(() => {
         getRooms();
     }, [])
-    
-    console.log(roomData)
 
     return(
         <RoomUnit>
             {
                 roomData.map((room) => (
-                    <Cards href={"home/" + room.id}>
+                    <Cards href={"rooms/room/" + room.id}>
                         <div className='top'>
                             <img src={room.img} alt="Room1" />
                         </div>

@@ -26,8 +26,8 @@ function HomeSection(){
             {/* <Particle50 /> */}
             <HomeGrid>
                 <Tolls3Btns /> 
-                {/* <RoomMenus></RoomMenus>
-                <RoomHeader></RoomHeader> */}
+                {/* <RoomMenus></RoomMenus> */}
+                <RoomHeader></RoomHeader>
                 <RoomPartition></RoomPartition>
             </HomeGrid>    
         </>

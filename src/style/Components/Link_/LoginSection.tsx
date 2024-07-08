@@ -14,7 +14,7 @@ const CenterDiv = styled.div`
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-  background: linear-gradient(120deg,#463b7bac, #14274E60);
+  background: linear-gradient(90deg,transparent,#14274E60, #463b7bac, #14274E60, transparent);
   .Logo{
     width: 100%;
     display: flex;
@@ -24,6 +24,7 @@ const CenterDiv = styled.div`
     user-select: none;
     img{
       width: 22vw;
+      filter: drop-shadow(0px 0px 10px #fff);
     }
   }
   .inputs{
