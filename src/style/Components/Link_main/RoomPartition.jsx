@@ -9,7 +9,7 @@ const RoomUnit = styled.div`
     position: relative;
     display: grid;
     height: 100%;
-    padding: 8rem 1rem 0 1rem;
+    padding: 1rem 1rem 0 1rem;
     margin: 0 auto;
     grid-template-columns: repeat(2, 36.5rem);
     grid-template-rows: repeat(5, 37rem);

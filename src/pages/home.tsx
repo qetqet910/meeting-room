@@ -27,7 +27,7 @@ function HomeSection(){
             <HomeGrid>
                 <Tolls3Btns /> 
                 {/* <RoomMenus></RoomMenus> */}
-                <RoomHeader></RoomHeader>
+                {/* <RoomHeader></RoomHeader> */}
                 <RoomPartition></RoomPartition>
             </HomeGrid>    
         </>

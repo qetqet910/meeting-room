@@ -1,6 +1,6 @@
 // import React from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { Rroom } from './room';
 
 // Styled-Components
 
@@ -14,9 +14,10 @@ const Pages = styled.div`
 `
 
 function Login() {
+  
   return (
     <Pages>
-        
+        <Rroom></Rroom>
     </Pages>
   );
 }
