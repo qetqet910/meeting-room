@@ -1,17 +1,48 @@
 import styled from "styled-components"
 import moment from "moment"
 import 'moment/locale/ko';
+import { useEffect, useState } from "react";
+import { db } from '../firbase';
+import { collection, query, getDocs } from 'firebase/firestore';
+import { useParams } from "react-router-dom";
 
 // 09시 ~ 21시 / 한 시간씩 / 한 계정 최대 2시간
 const ResCal = styled.div`
+    position: relative;
     display: grid;
     grid-template-columns: repeat(8,1fr);
     grid-template-rows: repeat(14,1fr);
     width: 94%;
     height: 60vh;
-    margin: 10rem auto 0 auto;
+    margin: 12rem auto 0 auto;
     box-shadow: 1px 1px 3px #333;
     border-radius: 10px;
+    h2{
+        position: absolute;
+        left: 50%;
+        top: -6%;
+        transform: translate(-50%, 0%);
+        font-size: 3rem;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+    .date{
+        position: relative;
+        background: linear-gradient(30deg, #f6f5f1 49%, #333 3%, #f6f5f1 52%);
+        span{
+            &:hover{background: none;}
+            &:nth-child(1){
+                position: absolute;
+                left: 18%;
+                bottom: 18%; 
+            }
+            &:nth-child(2){
+                position: absolute;
+                right: 18%;
+                top: 18%;
+            }
+        }
+    }
     .hrs{
         grid-row: 2 / 15;
         display: grid;
@@ -41,9 +72,27 @@ const ResCal = styled.div`
             background-color: #333;
         }
     }
+    #lines{
+        grid-row: 2 / 15;
+    }
 `
 
 export function ResCalF(){
+    const [ monthData, setMonthData ] = useState();
+    const [ ReserveData, setReserveData ] = useState([]);
+    const pa = Object.values(useParams())[0];
+
+    async function getReserve(){
+        const q = query(collection(db, "Reservation"));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            if(Number(doc.id.charAt(15)) == Number(pa)){
+                // setReserveData(doc.data());
+                console.log(doc.data());
+            }
+        });
+    }
+    
     let now = moment();
     const dotw = [];
     const hrs = [];
@@ -77,10 +126,19 @@ export function ResCalF(){
         now.add(1, "days");
     }
  
+    useEffect(() => {
+        getReserve();
+        setMonthData(now.format("MM"))
+    })
+
     return(
         
         <ResCal>
-            <div>시간/날짜</div>
+            <h2>{monthData}월</h2>
+            <div class="date">
+                <span>시간</span>
+                <span>날짜</span>
+            </div>
             <div class="dotw">
                 {
                     dotw.map((res) => 
@@ -95,10 +153,11 @@ export function ResCalF(){
                     )
                 }
             </div>
-
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            {dotw.map((res) => 
+                <div class={res} id="lines">
+                    
+                </div>
+            )}
         </ResCal>
     )
 }

@@ -101,21 +101,9 @@ const Cards = styled.div`
 `   
 
 export function Rroom(){
-    const [ dateData, setDateData ] = useState([])
     const [ roomData, setRoomData ] = useState([])
     const param = useParams();
     const pa = Object.values(param)[0];
-
-    async function getDate(){
-        const q = query(collection(db, "roomRservation"));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            if(Number(doc.id) == Number(pa)){
-                setDateData(doc.data());
-                // console.log(doc.data());
-            }
-        });
-    }
 
     async function getRooms(){
         const query = await getDocs(collection(db, "rooms"));
@@ -127,7 +115,6 @@ export function Rroom(){
     }
     
     useEffect(() => {
-        getDate();
         getRooms();
     }, [])
 
